@@ -122,6 +122,7 @@
     #define APP_ADC_CONFIGURE_CHANNELS  EBS_TRUE   
 
     #define uC_ADC1_INTFNUM             0
+    #define uC_ADC_CLOCK_PRESCALER      ADC_CCR_PRESC_3
 
     // 0: disable, 1: ADC1, 2: ADC2
     #define APP_ENABLE_AIN0             0   // Fast
