@@ -1,5 +1,6 @@
 
 
+#include <string.h>
 #include <application.h>
 #include <irq_handlers.h>
 #include <iomap.h>
@@ -18,6 +19,7 @@
 #include <tasks/uart_bare.h>
 #include <tasks/usb_task.h>
 
+#include <demos/itcm_demo.h>
 #include <demos/adc_demo.h>
 
 ucdm_addr_t next_address;
@@ -115,11 +117,14 @@ ucdm_addr_t setup_application(ucdm_addr_t ucdm_address) {
 
 #ifndef PIO_UNIT_TESTING
 
+
 int main(void) {
   ucdm_addr_t ucdm_address = 1;
   ucdm_address = setup_system(ucdm_address);
   ucdm_address = setup_application(ucdm_address);
   // start_uart_bare_task();
+
+  // itcm_test();
 
   setup_adc_demo();
 

@@ -1,10 +1,16 @@
 
+#include <string.h>
 #include "adc_demo.h"
 
+__attribute__((section(".dtcm")))
+uint32_t adc_value_count;
+
+__attribute__((section(".dtcm")))
 uint16_t adc_values[19];
 
-void adc_result_handler(HAL_BASE_t intfnum, HAL_BASE_t channel, void * result) {
+void adc_result_handler(HAL_BASE_t channel, void * result) {
     adc_values[channel] = *(uint16_t *)result;
+    adc_value_count ++;
 }
 
 
@@ -25,6 +31,9 @@ void adc_result_handler(HAL_BASE_t intfnum, HAL_BASE_t channel, void * result) {
  * configured conversion speed.
  */
 void setup_adc_demo(void){
-    adc_register_handler(uC_ADC1_INTFNUM, &adc_result_handler);
-    adc_trigger_scan(uC_ADC1_INTFNUM);
+    memset(adc_values, 0, sizeof(adc_values));
+    adc_value_count = 0;
+    adc_install_eoc_handler(uC_ADC1_INTFNUM, &adc_result_handler);
+    // adc_trigger_scan(uC_ADC1_INTFNUM);
+    adc_trigger_autoscan(uC_ADC1_INTFNUM);
 }

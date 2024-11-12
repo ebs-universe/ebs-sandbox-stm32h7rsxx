@@ -144,6 +144,19 @@ SECTIONS
     . = ALIGN(4);
   } >FLASH
 
+  _siitcm = LOADADDR(.itcm);
+  .itcm :
+  {
+    _sitcm = .;
+    . = ALIGN(4);
+    KEEP (*(.itcm_irqs))
+    *(.itcm)
+    *(.itcm*)
+    . = ALIGN(4);
+    _eitcm = .;
+  } >ITCM AT> FLASH
+  . = _siitcm + ( _eitcm - _sitcm ); 
+
   /* Used by the startup to initialize data */
   _sidata = LOADADDR(.data);
 
@@ -185,12 +198,12 @@ SECTIONS
     __NONCACHEABLEBUFFER_END = .;  /* create symbol for start of section */
   } > RAM_NONCACHEABLEBUFFER
 
-  .dtcm : 
+  .dtcm (NOLOAD): 
   {
     . = ALIGN(4);
     KEEP(*(.dtcm))
     . = ALIGN(4);
-  } > DTCM
+  } >DTCM
 
   /* User_heap_stack section, used to check that there is enough Ram  type memory left */
   ._user_heap_stack :
