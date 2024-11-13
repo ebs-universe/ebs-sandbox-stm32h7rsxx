@@ -63,7 +63,7 @@ void application_usb_init(void) {
     #endif
 }
 
-void tusb_task(void){
+void tusb_poll(void){
     #if APP_ENABLE_USB_DEVICE
       tud_task(); 
     #endif

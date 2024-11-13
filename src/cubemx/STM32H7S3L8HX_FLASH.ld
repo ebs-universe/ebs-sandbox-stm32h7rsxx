@@ -200,9 +200,12 @@ SECTIONS
 
   .dtcm (NOLOAD): 
   {
+    _sdtcm = .;
     . = ALIGN(4);
     KEEP(*(.dtcm))
+    KEEP(*(.dtcm*))
     . = ALIGN(4);
+    _edtcm = .;
   } >DTCM
 
   /* User_heap_stack section, used to check that there is enough Ram  type memory left */

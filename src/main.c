@@ -134,13 +134,13 @@ int main(void) {
       tm_cron_poll();
     #endif
     #if APP_ENABLE_USB
-      tusb_task();
+      tusb_poll();
     #endif
     #if APP_ENABLE_MODBUS
       modbus_state_machine();
     #endif
     #if APP_ENABLE_ADC
-      adc_watchdog();
+      adc_poll();
     #endif
     // usbcdc_bare_task();
   }
