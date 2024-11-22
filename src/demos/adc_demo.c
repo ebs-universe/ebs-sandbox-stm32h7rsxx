@@ -8,11 +8,11 @@ uint32_t adc_value_count;
 __attribute__((section(".dtcm")))
 uint16_t adc_values[19];
 
+// __attribute__((section(".itcm")))
 void adc_result_handler(HAL_BASE_t channel, void * result) {
     adc_values[channel] = *(uint16_t *)result;
     adc_value_count ++;
 }
-
 
 /*
  * This function triggers ADC read of all enabled channels. 

@@ -113,6 +113,50 @@
 /**@}*/ 
 
 /**
+ * @name Application Timers Configuration
+ */
+/**@{*/   
+    #define APP_ENABLE_TIMER            1
+
+    #define APP_ENABLE_TIM1             0   // ADV 
+    
+    #define APP_ENABLE_TIM2             0   // GP 32b 4CC DMA
+    #define APP_ENABLE_TIM3             0   // GP 32b 4CC DMA
+    #define APP_ENABLE_TIM4             0   // GP 32b 4CC DMA
+    #define APP_ENABLE_TIM5             0   // GP 32b 4CC DMA
+    
+    #define APP_ENABLE_TIM6             0   // Basic 16b 0CC DMA
+    #define APP_ENABLE_TIM7             0   // Basic 16b 0CC DMA
+    
+    #define APP_ENABLE_TIM9             0   // GP 16b 2CC
+    #define APP_ENABLE_TIM12            0   // GP 16b 2CC
+    #define APP_ENABLE_TIM13            0   // GP 16b 1CC
+    #define APP_ENABLE_TIM14            0   // GP 16b 1CC
+
+    #define APP_ENABLE_TIM15            1   // GP 16b 2CC DMA
+    #define APP_ENABLE_TIM16            0   // GP 16b 1CC DMA
+    #define APP_ENABLE_TIM17            0   // GP 16b 1CC DMA
+
+    #define uC_TIM15_INTFNUM            0
+/**@}*/ 
+
+/**
+ * @name Application Low Power Timers Configuration
+ * 
+ * Not implemented
+ */
+/**@{*/   
+    #define APP_ENABLE_LPTIMER          0
+
+    #define APP_ENABLE_LPTIM1           0   // LP 16b 2CC DMA
+    #define APP_ENABLE_LPTIM2           0   // LP 16b 2CC DMA
+    #define APP_ENABLE_LPTIM3           0   // LP 16b 2CC DMA
+    #define APP_ENABLE_LPTIM4           0   // LP 16b 0CC 
+    #define APP_ENABLE_LPTIM5           0   // LP 16b 0CC 
+/**@}*/ 
+
+
+/**
  * @name Application ADC Configuration
  */
 /**@{*/   
@@ -122,8 +166,8 @@
     #define APP_ADC_CONFIGURE_CHANNELS  EBS_TRUE   
 
     #define uC_ADC1_INTFNUM             0
-    #define uC_ADC1_MARK_POLL_OVERRUN   0
     #define uC_ADC_CLOCK_PRESCALER      ADC_CCR_PRESC_3
+    #define uC_ADC_CLOCK_PRESCALER_VAL  8
 
     // 0: disable, 1: ADC1, 2: ADC2
     #define APP_ENABLE_AIN0             0   // Fast
@@ -148,7 +192,6 @@
     #define APP_ENABLE_AIN_VBAT         0   // Slow // ADC2 Only
     #define APP_ENABLE_AIN_VDDC         0   // Slow // ADC2 Only
 /**@}*/ 
-
 
 /**
  * @name Application UART Configuration

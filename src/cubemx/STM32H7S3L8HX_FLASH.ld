@@ -149,9 +149,9 @@ SECTIONS
   {
     _sitcm = .;
     . = ALIGN(4);
-    KEEP (*(.itcm_irqs))
     *(.itcm)
     *(.itcm*)
+    KEEP (*(.itcm_irqs))
     . = ALIGN(4);
     _eitcm = .;
   } >ITCM AT> FLASH
