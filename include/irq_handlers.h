@@ -36,6 +36,7 @@
 #include <hal_platform/uart_handlers.h>
 #include <hal_platform/usb_handlers.h>
 #include <hal_platform/adc_handlers.h>
+#include <hal_platform/timer_handlers.h>
 
 /**
  * @name Core IRQ Handlers
@@ -93,6 +94,38 @@ void RNG_IRQHandler(void);
  */
 /**@{*/   
 void ADC1_2_IRQHandler(void);
+/**@}*/ 
+
+/**
+ * @name Timer IRQ Handlers
+ */
+/**@{*/   
+
+void TIM1_BRK_IRQHandler(void);
+void TIM1_UP_IRQHandler(void);
+void TIM1_TRG_COM_IRQHandler(void);
+void TIM1_CC_IRQHandler(void);
+
+void TIM2_IRQHandler(void);
+void TIM3_IRQHandler(void);
+void TIM4_IRQHandler(void);
+void TIM5_IRQHandler(void);
+void TIM6_IRQHandler(void);
+void TIM7_IRQHandler(void);
+void TIM9_IRQHandler(void);
+
+void TIM12_IRQHandler(void);
+void TIM13_IRQHandler(void);
+void TIM14_IRQHandler(void);
+void TIM15_IRQHandler(void);
+void TIM16_IRQHandler(void);
+void TIM17_IRQHandler(void);
+
+void LPTIM1_IRQHandler(void);
+void LPTIM2_IRQHandler(void);
+void LPTIM3_IRQHandler(void);
+void LPTIM4_IRQHandler(void);
+void LPTIM5_IRQHandler(void);
 /**@}*/ 
 
 /**

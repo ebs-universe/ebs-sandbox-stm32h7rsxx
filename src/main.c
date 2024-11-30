@@ -32,6 +32,7 @@ static void setup_handlers(void) {
     __uart_handler_inclusion = 1;
     __usb_handler_inclusion = 1;
     __adc_handler_inclusion = 1;
+    __timer_handler_inclusion = 1;
 }
 
 void button_handler(uint8_t line);
@@ -76,6 +77,9 @@ static ucdm_addr_t setup_peripherals(ucdm_addr_t ucdm_address) {
     #if APP_ENABLE_ADC
       adc_init();
     #endif
+    #if APP_ENABLE_TIM15
+      timer_init(uC_TIM15_INTFNUM);
+    #endif
 
     #if APP_ENABLE_BCIF
         #if APP_BCIF_TYPE == EBS_INTF_UART
@@ -117,7 +121,6 @@ ucdm_addr_t setup_application(ucdm_addr_t ucdm_address) {
 
 #ifndef PIO_UNIT_TESTING
 
-
 int main(void) {
   ucdm_addr_t ucdm_address = 1;
   ucdm_address = setup_system(ucdm_address);
@@ -127,6 +130,7 @@ int main(void) {
   // itcm_test();
 
   setup_adc_demo();
+  timer_set_mode(uC_TIM15_INTFNUM, TIMER_MODE_PERIODIC);
 
   while (1)
   {

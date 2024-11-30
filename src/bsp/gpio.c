@@ -96,10 +96,26 @@ static void gpio_init_adc(void) {
     #endif
 }
 
+static void gpio_init_timers(void) {
+    #if uC_TIM15_CH1_OUTPUT_ENABLED
+        gpio_conf_outmode_pp(GPIO_TIM15_CH1);
+        gpio_conf_periph(GPIO_TIM15_CH1, GPIO_AF4_TIM15);
+    #endif
+}
+
+static void gpio_init_board_debug(void){
+    gpio_conf_output(GPIO_DBG_SCOPE1);
+    gpio_conf_outmode_pp(GPIO_DBG_SCOPE1);
+    gpio_conf_speed(GPIO_DBG_SCOPE1, GPIO_SPEED_FREQ_MEDIUM);
+    gpio_set_output_low(GPIO_DBG_SCOPE1);
+}
+
 void application_gpio_init (void){
     gpio_init();
     gpio_init_board_leds();
     gpio_init_board_buttons();
     gpio_init_bcif();
     gpio_init_adc();
+    gpio_init_timers();
+    gpio_init_board_debug();
 }

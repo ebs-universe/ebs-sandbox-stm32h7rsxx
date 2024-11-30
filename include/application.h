@@ -118,12 +118,12 @@
 /**@{*/   
     #define APP_ENABLE_TIMER            1
 
-    #define APP_ENABLE_TIM1             0   // ADV 
+    #define APP_ENABLE_TIM1             0   // ADV 16b 4CC DMA UpDown
     
-    #define APP_ENABLE_TIM2             0   // GP 32b 4CC DMA
-    #define APP_ENABLE_TIM3             0   // GP 32b 4CC DMA
-    #define APP_ENABLE_TIM4             0   // GP 32b 4CC DMA
-    #define APP_ENABLE_TIM5             0   // GP 32b 4CC DMA
+    #define APP_ENABLE_TIM2             0   // GP 32b 4CC DMA UpDown
+    #define APP_ENABLE_TIM3             0   // GP 32b 4CC DMA UpDown
+    #define APP_ENABLE_TIM4             0   // GP 32b 4CC DMA UpDown
+    #define APP_ENABLE_TIM5             0   // GP 32b 4CC DMA UpDown
     
     #define APP_ENABLE_TIM6             0   // Basic 16b 0CC DMA
     #define APP_ENABLE_TIM7             0   // Basic 16b 0CC DMA
@@ -138,6 +138,11 @@
     #define APP_ENABLE_TIM17            0   // GP 16b 1CC DMA
 
     #define uC_TIM15_INTFNUM            0
+    #define uC_TIM15_CYCLE_FREQ         10000
+    #define uC_TIM15_INTERRUPTS_ENABLE      0
+    #define uC_TIM15_INTERRUPT_TOP_ENABLE   0
+    #define uC_TIM15_CH1_OUTPUT_MODE        TIMER_OUTMODE_TOGGLE
+    #define uC_TIM15_TRIGGEN_SRC            TIMER_TRIGGEN_TOP
 /**@}*/ 
 
 /**
@@ -166,8 +171,8 @@
     #define APP_ADC_CONFIGURE_CHANNELS  EBS_TRUE   
 
     #define uC_ADC1_INTFNUM             0
-    #define uC_ADC_CLOCK_PRESCALER      ADC_CCR_PRESC_3
-    #define uC_ADC_CLOCK_PRESCALER_VAL  8
+    #define uC_ADC_CLOCK_PRESCALER      ADC_CCR_PRESC_2
+    #define uC_ADC1_TRIGSRC             0x4E  // tim15_trgo // adc_ext_trg14 // both edges
 
     // 0: disable, 1: ADC1, 2: ADC2
     #define APP_ENABLE_AIN0             0   // Fast
