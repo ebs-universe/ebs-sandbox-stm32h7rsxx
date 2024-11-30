@@ -7,13 +7,16 @@ extern "C" {
 
 #include "stm32h7rsxx_hal.h"
 #include "clocktree.h"
+#include "memmap.h"
+#include "priorities.h"
 
 /**
  * @name Application Specific GPIOs
  */
 /**@{*/ 
-
-
+#define DBG_SCOPE1_PIN       2
+#define DBG_SCOPE1_PORT      GPIOF_BASE
+#define GPIO_DBG_SCOPE1      DBG_SCOPE1_PORT, DBG_SCOPE1_PIN
 /**@}*/ 
 
 /**
@@ -153,9 +156,9 @@ extern "C" {
 #define I2C2_SDA_PORT       GPIOF_BASE
 #define GPIO_I2C2_SDA       I2C2_SDA_PORT, I2C2_SDA_PIN
 
-#define I2C2_SMBA_PIN       2
-#define I2C2_SMBA_PORT      GPIOF_BASE
-#define GPIO_I2C2_SMBA      I2C2_SMBA_PORT, I2C1_SMBA_PIN
+// #define I2C2_SMBA_PIN       2
+// #define I2C2_SMBA_PORT      GPIOF_BASE
+// #define GPIO_I2C2_SMBA      I2C2_SMBA_PORT, I2C1_SMBA_PIN
 /**@}*/ 
 
 /**
@@ -171,6 +174,20 @@ extern "C" {
 #define FDCAN1_RX_PIN       0
 #define FDCAN1_RX_PORT      GPIOD_BASE
 #define GPIO_FDCAN1_RX      FDCAN1_RX_PORT, FDCAN1_RX_PIN
+/**@}*/
+
+/**
+ * @name GPIOs associated with Timers
+ * 
+ * These are the Timer IOs exposed on the Nucleo's Arduino compatible
+ * connector, chosen minimally to try out TIM15 and the Timer peripheral's
+ * HAL layer. 
+ * 
+ */
+/**@{*/ 
+#define TIM15_CH1_PIN       5
+#define TIM15_CH1_PORT      GPIOE_BASE
+#define GPIO_TIM15_CH1      TIM15_CH1_PORT, TIM15_CH1_PIN
 /**@}*/
 
 /**
