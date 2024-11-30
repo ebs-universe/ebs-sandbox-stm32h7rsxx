@@ -50,6 +50,7 @@
 
 #include "stm32h7rsxx.h"
 #include <math.h>
+#include <memmap.h>
 
 /**
   * @}
