@@ -5,3 +5,9 @@
 .vscode
 lib/hal
 lib/hal-stm32
+resources/.settings
+resources/Appli
+resources/Boot
+resources/Drivers
+resources/.mxproject
+resources/.project
