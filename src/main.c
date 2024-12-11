@@ -21,6 +21,7 @@
 
 #include <demos/itcm_demo.h>
 #include <demos/adc_demo.h>
+#include <demos/dma_demo.h>
 
 ucdm_addr_t next_address;
 
@@ -64,6 +65,9 @@ static ucdm_addr_t setup_peripherals(ucdm_addr_t ucdm_address) {
     #endif
     #if APP_ENABLE_TIME_SYNC
       setup_time_sync();
+    #endif
+    #if APP_ENABLE_DMA
+      dma_init();
     #endif
     #if APP_ENABLE_OUTPUT_BLINK
       start_blink_task();
@@ -129,8 +133,9 @@ int main(void) {
 
   // itcm_test();
 
-  setup_adc_demo();
-  timer_set_mode(uC_TIM15_INTFNUM, TIMER_MODE_PERIODIC);
+  // setup_adc_demo();
+  // timer_set_mode(uC_TIM15_INTFNUM, TIMER_MODE_PERIODIC);
+  setup_dma_demo();
 
   while (1)
   {
@@ -145,6 +150,9 @@ int main(void) {
     #endif
     #if APP_ENABLE_ADC
       adc_poll();
+    #endif
+    #if APP_ENABLE_DMA
+      dma_poll();
     #endif
     // usbcdc_bare_task();
   }

@@ -71,7 +71,6 @@
     #define APP_ENABLE_GPIO            1
 /**@}*/ 
 
-
 /**
  * @name Application Systick and Time Configuration
  */
@@ -328,6 +327,50 @@
     // hardware or software issue.
     #define APP_ENABLE_BUTTON                0
 /**@}*/
+
+/**
+ * @name Application DMA Configuration
+ */
+/**@{*/   
+    #define APP_ENABLE_DMA              1
+    #define APP_ENABLE_DMA1_CH0         1
+    #define APP_ENABLE_DMA1_CH1         0  
+    #define APP_ENABLE_DMA1_CH2         0
+    #define APP_ENABLE_DMA1_CH3         0
+    #define APP_ENABLE_DMA1_CH4         0
+    #define APP_ENABLE_DMA1_CH5         0
+    #define APP_ENABLE_DMA1_CH6         0  
+    #define APP_ENABLE_DMA1_CH7         0
+    #define APP_ENABLE_DMA1_CH8         0
+    #define APP_ENABLE_DMA1_CH9         0
+    #define APP_ENABLE_DMA1_CH10        0
+    #define APP_ENABLE_DMA1_CH11        0  
+    #define APP_ENABLE_DMA1_CH12        0
+    #define APP_ENABLE_DMA1_CH13        0
+    #define APP_ENABLE_DMA1_CH14        0
+    #define APP_ENABLE_DMA1_CH15        0
+    
+    #define APP_ENABLE_DMA2_CH0         1
+    #define APP_ENABLE_DMA2_CH1         0  
+    #define APP_ENABLE_DMA2_CH2         0
+    #define APP_ENABLE_DMA2_CH3         0
+    #define APP_ENABLE_DMA2_CH4         0
+    #define APP_ENABLE_DMA2_CH5         0
+    #define APP_ENABLE_DMA2_CH6         0  
+    #define APP_ENABLE_DMA2_CH7         0
+    #define APP_ENABLE_DMA2_CH8         0
+    #define APP_ENABLE_DMA2_CH9         0
+    #define APP_ENABLE_DMA2_CH10        0
+    #define APP_ENABLE_DMA2_CH11        0  
+    #define APP_ENABLE_DMA2_CH12        0
+    #define APP_ENABLE_DMA2_CH13        0
+    #define APP_ENABLE_DMA2_CH14        0
+    #define APP_ENABLE_DMA2_CH15        0
+
+    #define uC_DMA1_CH0_INTFNUM         0
+    #define uC_DMA2_CH0_INTFNUM         1
+/**@}*/ 
+
 
 /**
  * @name Application Modbus Configuration
