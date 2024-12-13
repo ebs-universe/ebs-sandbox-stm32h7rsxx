@@ -136,12 +136,12 @@ int main(void) {
   // setup_adc_demo();
   // timer_set_mode(uC_TIM15_INTFNUM, TIMER_MODE_PERIODIC);
   setup_dma_demo();
-
+    
   while (1)
   {
     #if APP_ENABLE_TIME_CRON
       tm_cron_poll();
-    #endif
+    #endif    
     #if APP_ENABLE_USB
       tusb_poll();
     #endif
@@ -152,7 +152,7 @@ int main(void) {
       adc_poll();
     #endif
     #if APP_ENABLE_DMA
-      dma_poll();
+      dma_poll(); 
     #endif
     // usbcdc_bare_task();
   }

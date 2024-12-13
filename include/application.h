@@ -312,27 +312,11 @@
 /**@}*/ 
 
 /**
- * @name Application Common Infrastructure Configuration
- */
-/**@{*/   
-    #define APP_ENABLE_OUTPUT_BLINK          1
-    #define BLINK_GPIO                       GPIO_LED_YELLOW
-    #define BLINK_POLARITY                   1
-
-    #define APP_ENABLE_OUTPUT_ERROR          1
-    #define ERROR_GPIO                       GPIO_LED_RED
-    #define ERROR_POLARITY                   1
-
-    // button appears to be broken. unclear if it is a 
-    // hardware or software issue.
-    #define APP_ENABLE_BUTTON                0
-/**@}*/
-
-/**
  * @name Application DMA Configuration
  */
 /**@{*/   
     #define APP_ENABLE_DMA              1
+
     #define APP_ENABLE_DMA1_CH0         1
     #define APP_ENABLE_DMA1_CH1         0  
     #define APP_ENABLE_DMA1_CH2         0
@@ -345,7 +329,7 @@
     #define APP_ENABLE_DMA1_CH9         0
     #define APP_ENABLE_DMA1_CH10        0
     #define APP_ENABLE_DMA1_CH11        0  
-    #define APP_ENABLE_DMA1_CH12        0
+    #define APP_ENABLE_DMA1_CH12        1
     #define APP_ENABLE_DMA1_CH13        0
     #define APP_ENABLE_DMA1_CH14        0
     #define APP_ENABLE_DMA1_CH15        0
@@ -362,15 +346,28 @@
     #define APP_ENABLE_DMA2_CH9         0
     #define APP_ENABLE_DMA2_CH10        0
     #define APP_ENABLE_DMA2_CH11        0  
-    #define APP_ENABLE_DMA2_CH12        0
+    #define APP_ENABLE_DMA2_CH12        1
     #define APP_ENABLE_DMA2_CH13        0
     #define APP_ENABLE_DMA2_CH14        0
     #define APP_ENABLE_DMA2_CH15        0
-
-    #define uC_DMA1_CH0_INTFNUM         0
-    #define uC_DMA2_CH0_INTFNUM         1
 /**@}*/ 
 
+/**
+ * @name Application Common Infrastructure Configuration
+ */
+/**@{*/   
+    #define APP_ENABLE_OUTPUT_BLINK          1
+    #define BLINK_GPIO                       GPIO_LED_YELLOW
+    #define BLINK_POLARITY                   1
+
+    #define APP_ENABLE_OUTPUT_ERROR          1
+    #define ERROR_GPIO                       GPIO_LED_RED
+    #define ERROR_POLARITY                   1
+
+    // button appears to be broken. unclear if it is a 
+    // hardware or software issue.
+    #define APP_ENABLE_BUTTON                0
+/**@}*/
 
 /**
  * @name Application Modbus Configuration
@@ -406,6 +403,14 @@
     #ifndef TEST_SERIAL_TYPE
     #define TEST_SERIAL_TYPE                  EBS_INTF_UART
     #endif
+/**@}*/ 
+
+/**
+ * @name Application DMA Demonstration Configuration
+ */
+/**@{*/ 
+    #define APP_DMADEMO_MEMCPY_CHANNEL       uC_DMA2_CH12_INTFNUM
+    #define APP_DMADEMO_MEMCPY_DTCM_CHANNEL  uC_DMA1_CH12_INTFNUM
 /**@}*/ 
 
 #endif

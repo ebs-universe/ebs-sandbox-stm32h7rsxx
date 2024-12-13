@@ -6,3 +6,15 @@
 
 // This can't be changed without changing the startup file. 
 // #define MEMMAP_VECTABLE_IN_ITCM    1
+
+#define MEMMAP_FASTDATA_START       0x20000000
+#define MEMMAP_FASTDATA_END         0x20020000
+#define MEMMAP_FASTEXEC_START       0x00000000
+#define MEMMAP_FASTEXEC_END         0x00010000
+#define MEMMAP_RAM_START            0x24000000
+#define MEMMAP_RAM_END              0x24050000
+#define MEMMAP_SHAREDATA_START      0x24060000        
+#define MEMMAP_SHAREDATA_END        0x24072000
+
+#define MEMMAP_DMA_LL               SHAREDATA
+#define MEMMAP_DMA_LLI_BASE         MEMMAP_SHAREDATA_START

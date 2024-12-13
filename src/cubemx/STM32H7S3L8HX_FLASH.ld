@@ -44,17 +44,19 @@ _Min_Stack_Size = 0x400; /* required amount of stack */
 __FLASH_BEGIN  = 0x08000000;
 __FLASH_SIZE   = 0x00010000;
 
-
 __RAM_BEGIN    = 0x24000000;
 __RAM_SIZE     = 0x71C00;
 __RAM_NONCACHEABLEBUFFER_SIZE = 0x400;
+
+__SHARED_BEGIN = 0x24060000;
+__SHARED_SIZE  = 0x12000;
 
 /* 
  * ITCM reservation to avoid overlap with discarded functions. There 
  * is no good reason for this to be non-zero. All we get with this 
  * is cleaner assembly listings and _maybe_ better debugger support.
  */
-ITCM_RESERVED = 0x2000;
+ITCM_RESERVED = 0x2000; 
 
 /* Memories definition */
 MEMORY
@@ -64,17 +66,19 @@ MEMORY
 
   ITCM      (xrw) : ORIGIN = ITCM_RESERVED,    LENGTH = 0x00010000 - ITCM_RESERVED
   DTCM       (rw) : ORIGIN = 0x20000000,    LENGTH = 0x00020000
+  SHARED     (rw) : ORIGIN = __SHARED_BEGIN, LENGTH = __SHARED_SIZE
   SRAMAHB   (rw)  : ORIGIN = 0x30000000,  LENGTH = 0x00008000
   BKPSRAM   (rw)  : ORIGIN = 0x38800000,  LENGTH = 0x00001000
 
   FLASH     (xrw) : ORIGIN = __FLASH_BEGIN, LENGTH = __FLASH_SIZE
+  
 }
 
 /* Sections */
 SECTIONS
 {
   /* The startup code into "FLASH" Rom type memory */
-  .isr_vector :
+  .isr_vector :     
   {
     . = ALIGN(4);
     KEEP(*(.isr_vector)) /* Startup code */
@@ -233,6 +237,15 @@ SECTIONS
     */
     . = ALIGN(8);
   } >DTCM
+
+  .shared (NOLOAD) :
+  {
+    _sshared = .;
+    . = ALIGN(8);
+    *(.shared)
+    . = ALIGN(8);
+    _eshared = .;
+  } >SHARED
 
   /* Remove information from the compiler libraries */
   /DISCARD/ :
