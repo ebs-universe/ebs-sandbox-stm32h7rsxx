@@ -59,8 +59,8 @@
  * 
  */
 /**@{*/   
-    #define APP_ENABLE_XSPIM1               0
-    #define APP_ENABLE_XSPIM2               1
+    #define APP_ENABLE_XSPIM1          0
+    #define APP_ENABLE_XSPIM2          1
 /**@}*/ 
 
 
@@ -137,7 +137,7 @@
     #define APP_ENABLE_TIM17            0   // GP 16b 1CC DMA
 
     #define uC_TIM15_INTFNUM            0
-    #define uC_TIM15_CYCLE_FREQ         10000
+    #define uC_TIM15_CYCLE_FREQ         80000
     #define uC_TIM15_INTERRUPTS_ENABLE      0
     #define uC_TIM15_INTERRUPT_TOP_ENABLE   0
     #define uC_TIM15_CH1_OUTPUT_MODE        TIMER_OUTMODE_TOGGLE
@@ -146,7 +146,7 @@
 
 /**
  * @name Application Low Power Timers Configuration
- * 
+ *      
  * Not implemented
  */
 /**@{*/   
@@ -164,15 +164,19 @@
  * @name Application ADC Configuration
  */
 /**@{*/   
-    #define APP_ENABLE_ADC              1
+    #define APP_ENABLE_ADC              1           
     #define APP_ADC1_MODE               ADC_MODE_SCAN
     #define APP_ADC2_MODE               ADC_MODE_DISABLED
-    #define APP_ADC_CONFIGURE_CHANNELS  EBS_TRUE   
 
-    #define uC_ADC1_INTFNUM             0
+    #define APP_ADC_CONFIGURE_CHANNELS  EBS_TRUE
+    #define APP_ADC_DM_MODE             ADC_DM_INTERRUPT
+    #define APP_ADC_DMA_BUFFER_LENGTH   256
+    #define APP_ADC_DMA_CHANNEL         uC_DMA1_CH13_INTFNUM
+    
     #define uC_ADC_CLOCK_PRESCALER      ADC_CCR_PRESC_2
+    #define uC_ADC_TIMING_MONITOR_GPIO  GPIO_DBG_SCOPE1
     #define uC_ADC1_TRIGSRC             0x4E  // tim15_trgo // adc_ext_trg14 // both edges
-
+    
     // 0: disable, 1: ADC1, 2: ADC2
     #define APP_ENABLE_AIN0             0   // Fast
     #define APP_ENABLE_AIN1             0   // Fast
@@ -259,37 +263,37 @@
  * @name Application USB Configuration 
  */
 /**@{*/
-    #define APP_ENABLE_USB_HOST             0   // Not implemented
-    #define APP_ENABLE_USB_DEVICE           0  
-    #define APP_ENABLE_USB                  (APP_ENABLE_USB_DEVICE | APP_ENABLE_USB_HOST)
-    #define APP_USB_DEVICE_RHPORT           1
-    #define APP_USB_POWER                   400
-    #define APP_USB_DESCR_VID               1155
-    #define APP_USB_DESCR_PID               22336
-    #define APP_USB_DESCR_VERSION           0x0100
-    #define APP_BLINK_FOR_USB_STATUS        1
+    #define APP_ENABLE_USB_HOST         0   // Not implemented
+    #define APP_ENABLE_USB_DEVICE       0  
+    #define APP_ENABLE_USB              (APP_ENABLE_USB_DEVICE | APP_ENABLE_USB_HOST)
+    #define APP_USB_DEVICE_RHPORT       1
+    #define APP_USB_POWER               400
+    #define APP_USB_DESCR_VID           1155
+    #define APP_USB_DESCR_PID           22336
+    #define APP_USB_DESCR_VERSION       0x0100
+    #define APP_BLINK_FOR_USB_STATUS    1
 
-    #define APP_ENABLE_USBCDC0              1
-    #define APP_ENABLE_USBCDC1              1
-    #define APP_ENABLE_USBCDC2              1
+    #define APP_ENABLE_USBCDC0          1
+    #define APP_ENABLE_USBCDC1          1
+    #define APP_ENABLE_USBCDC2          1
 
     // tusb needs this total, and we want it to only use application.h to fill
     // out its config
-    #define APP_USBCDC_IFACES               (APP_ENABLE_USBCDC0 + APP_ENABLE_USBCDC1 + APP_ENABLE_USBCDC2)
+    #define APP_USBCDC_IFACES           (APP_ENABLE_USBCDC0 + APP_ENABLE_USBCDC1 + APP_ENABLE_USBCDC2)
     
-    #define APP_ENABLE_USBCDC0_PT           0
-    #define APP_ENABLE_USBCDC1_PT           0
-    #define APP_ENABLE_USBCDC2_PT           0
+    #define APP_ENABLE_USBCDC0_PT       0
+    #define APP_ENABLE_USBCDC1_PT       0
+    #define APP_ENABLE_USBCDC2_PT       0
 
     #if APP_USBCDC_IFACES >= 3
-    #define APP_USB_DESCR_IF_CDC0           "Control Interface"
-    #define APP_USB_DESCR_IF_CDC1           "Bulk Interface"
-    #define APP_USB_DESCR_IF_CDC2           "Backchannel Interface"
+    #define APP_USB_DESCR_IF_CDC0       "Control Interface"
+    #define APP_USB_DESCR_IF_CDC1       "Bulk Interface"
+    #define APP_USB_DESCR_IF_CDC2       "Backchannel Interface"
     #elif APP_USBCDC_IFACES == 2
-    #define APP_USB_DESCR_IF_CDC0           "Primary Interface"
-    #define APP_USB_DESCR_IF_CDC1           "Backchannel Interface"
+    #define APP_USB_DESCR_IF_CDC0       "Primary Interface"
+    #define APP_USB_DESCR_IF_CDC1       "Backchannel Interface"
     #else 
-    #define APP_USB_DESCR_IF_CDC0           "Primary Interface"
+    #define APP_USB_DESCR_IF_CDC0       "Primary Interface"
     #endif
 /**@}*/ 
 
@@ -316,7 +320,7 @@
  */
 /**@{*/   
     #define APP_ENABLE_DMA              1
-
+    
     #define APP_ENABLE_DMA1_CH0         1
     #define APP_ENABLE_DMA1_CH1         0  
     #define APP_ENABLE_DMA1_CH2         0
@@ -330,7 +334,7 @@
     #define APP_ENABLE_DMA1_CH10        0
     #define APP_ENABLE_DMA1_CH11        0  
     #define APP_ENABLE_DMA1_CH12        1
-    #define APP_ENABLE_DMA1_CH13        0
+    #define APP_ENABLE_DMA1_CH13        APP_ADC_USE_DMA
     #define APP_ENABLE_DMA1_CH14        0
     #define APP_ENABLE_DMA1_CH15        0
     
@@ -350,30 +354,33 @@
     #define APP_ENABLE_DMA2_CH13        0
     #define APP_ENABLE_DMA2_CH14        0
     #define APP_ENABLE_DMA2_CH15        0
+
+    #define uC_DMA1_CH13_TYPE           DMA_CHN_TYPE_CIRCULAR
+    #define uC_DMA1_CH13_PRIORITY       DMA_PRIORITY_IMMEDIATE
 /**@}*/ 
 
 /**
  * @name Application Common Infrastructure Configuration
  */
 /**@{*/   
-    #define APP_ENABLE_OUTPUT_BLINK          1
-    #define BLINK_GPIO                       GPIO_LED_YELLOW
-    #define BLINK_POLARITY                   1
+    #define APP_ENABLE_OUTPUT_BLINK     1
+    #define BLINK_GPIO                  GPIO_LED_YELLOW
+    #define BLINK_POLARITY              1
 
-    #define APP_ENABLE_OUTPUT_ERROR          1
-    #define ERROR_GPIO                       GPIO_LED_RED
-    #define ERROR_POLARITY                   1
+    #define APP_ENABLE_OUTPUT_ERROR     1
+    #define ERROR_GPIO                  GPIO_LED_RED
+    #define ERROR_POLARITY              1
 
     // button appears to be broken. unclear if it is a 
     // hardware or software issue.
-    #define APP_ENABLE_BUTTON                0
+    #define APP_ENABLE_BUTTON           0
 /**@}*/
 
 /**
  * @name Application Modbus Configuration
  */
 /**@{*/   
-    #define APP_ENABLE_MODBUS                1
+    #define APP_ENABLE_MODBUS           1
     
     #if APP_ENABLE_PRIF
         #define MODBUS_TRANSPORT_INTFNUM     APP_PRIF_INTFNUM
@@ -393,15 +400,15 @@
 /**@{*/   
     #ifndef TEST_SERIAL_INTFNUM
         #if APP_ENABLE_PRIF
-        #define TEST_SERIAL_INTFNUM           APP_PRIF_INTFNUM
-        #define TEST_SERIAL_TYPE              APP_PRIF_TYPE
+            #define TEST_SERIAL_INTFNUM   APP_PRIF_INTFNUM
+            #define TEST_SERIAL_TYPE      APP_PRIF_TYPE
         #elif APP_ENABLE_BCIF
-        #define TEST_SERIAL_INTFNUM           APP_BCIF_INTFNUM
-        #define TEST_SERIAL_TYPE              APP_BCIF_TYPE
+            #define TEST_SERIAL_INTFNUM   APP_BCIF_INTFNUM
+            #define TEST_SERIAL_TYPE      APP_BCIF_TYPE
         #endif
     #endif
     #ifndef TEST_SERIAL_TYPE
-    #define TEST_SERIAL_TYPE                  EBS_INTF_UART
+        #define TEST_SERIAL_TYPE          EBS_INTF_UART
     #endif
 /**@}*/ 
 

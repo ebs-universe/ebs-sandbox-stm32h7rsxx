@@ -16,5 +16,12 @@
 #define MEMMAP_SHAREDATA_START      0x24060000        
 #define MEMMAP_SHAREDATA_END        0x24072000
 
-#define MEMMAP_DMA_LL               SHAREDATA
 #define MEMMAP_DMA_LLI_BASE         MEMMAP_SHAREDATA_START
+#define MM_DMA_LL                   SHAREDATA
+
+/**
+ * ADC DMA Buffer can be put into FASTDATA (DTCM) if the CPU 
+ * is going to handle it directly. If it is just going to be 
+ * copied out, then SHAREDATA is the better option.
+ */ 
+#define MM_ADC_DMA_BUFFER           FASTDATA

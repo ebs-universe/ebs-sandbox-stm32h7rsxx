@@ -4,9 +4,9 @@
 
 uint8_t dd_buffer_1[1024];
 uint8_t dd_buffer_2[1024];
-uint8_t dd_buffer_3[1024] FASTDATA;
+uint8_t dd_buffer_3[1024];
 uint8_t dd_buffer_4[1024];
-uint8_t dd_buffer_5[1024];
+uint8_t FASTDATA dd_buffer_5[1024];
 
 static void dd_prefill_buffer(uint8_t *dest, uint16_t length){
     for (uint16_t i=0; i<length; i++){
@@ -22,24 +22,24 @@ static void dd_reset_buffers(void){
     dd_prefill_buffer(&dd_buffer_1[0], 1024);
 }
 
-void dd_tch(void){
-    ;
+void dd_tch(uint8_t token){
+    (void)token;
 }
 
-void dd_tch_1(void){
-    dd_tch();
+void dd_tch_1(uint8_t token){
+    dd_tch(token);
 }
 
-void dd_tch_2(void){
-    dd_tch();
+void dd_tch_2(uint8_t token){
+    dd_tch(token);
 }
 
-void dd_tch_3(void){
-    dd_tch();
+void dd_tch_3(uint8_t token){
+    dd_tch(token);
 }
 
-void dd_tch_4(void){
-    dd_tch();
+void dd_tch_4(uint8_t token){
+    dd_tch(token);
 }
 
 // DMA1: HPDMA, DMA2: GPDMA
@@ -53,13 +53,12 @@ void setup_dma_demo(void){
      * This works with either DMA. 
      * When HPDMA is used, the AXI port must be used (AP=0)
      */
-    dma_memcpy(APP_DMADEMO_MEMCPY_CHANNEL, &dd_buffer_1[0], &dd_buffer_2[0], 1016, &dd_tch_1);
+    dma_memcpy(APP_DMADEMO_MEMCPY_CHANNEL, &dd_buffer_2[0], &dd_buffer_1[0], 1016, &dd_tch_1, 1);
     
     // while (!dma_check_ready(APP_DMADEMO_MEMCPY_CHANNEL)){};
 
-    dma_memcpy(APP_DMADEMO_MEMCPY_CHANNEL, &dd_buffer_2[0], &dd_buffer_5[0], 1016, &dd_tch_4);
+    dma_memcpy(APP_DMADEMO_MEMCPY_CHANNEL, &dd_buffer_3[0], &dd_buffer_2[0], 1016, &dd_tch_2, 2);
     
-    dma_activate(APP_DMADEMO_MEMCPY_CHANNEL);
     /**     
      * Copy from SRAM to DTCM
      * 
@@ -67,7 +66,7 @@ void setup_dma_demo(void){
      *   - AHB port used to access DTCM (AP=1)  
      *   - AXI port used to access SRAM (AP=0)
      */
-    dma_memcpy(APP_DMADEMO_MEMCPY_DTCM_CHANNEL, &dd_buffer_1[0], &dd_buffer_3[0], 1008, &dd_tch_2);
+    dma_memcpy(APP_DMADEMO_MEMCPY_DTCM_CHANNEL, &dd_buffer_5[0], &dd_buffer_1[0], 1008, &dd_tch_3, 3);
     
     // while (!dma_check_ready(APP_DMADEMO_MEMCPY_DTCM_CHANNEL)){};
 
@@ -78,7 +77,8 @@ void setup_dma_demo(void){
     //  *   - AHB port used to access DTCM (AP=1)
     //  *   - AXI port used to access SRAM (AP=0)
     //  */
-    dma_memcpy(APP_DMADEMO_MEMCPY_DTCM_CHANNEL, &dd_buffer_3[0], &dd_buffer_4[0], 1000, &dd_tch_3);
+    dma_memcpy(APP_DMADEMO_MEMCPY_DTCM_CHANNEL, &dd_buffer_4[0], &dd_buffer_5[0], 1000, &dd_tch_4, 4);
 
+    dma_activate(APP_DMADEMO_MEMCPY_CHANNEL);
     dma_activate(APP_DMADEMO_MEMCPY_DTCM_CHANNEL);
 }   

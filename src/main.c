@@ -133,9 +133,9 @@ int main(void) {
 
   // itcm_test();
 
-  // setup_adc_demo();
-  // timer_set_mode(uC_TIM15_INTFNUM, TIMER_MODE_PERIODIC);
-  setup_dma_demo();
+  setup_adc_demo();
+  timer_set_mode(uC_TIM15_INTFNUM, TIMER_MODE_PERIODIC);
+  // setup_dma_demo();
     
   while (1)
   {
