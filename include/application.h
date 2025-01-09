@@ -137,7 +137,7 @@
     #define APP_ENABLE_TIM17            0   // GP 16b 1CC DMA
 
     #define uC_TIM15_INTFNUM            0
-    #define uC_TIM15_CYCLE_FREQ         80000
+    #define uC_TIM15_CYCLE_FREQ         1500000
     #define uC_TIM15_INTERRUPTS_ENABLE      0
     #define uC_TIM15_INTERRUPT_TOP_ENABLE   0
     #define uC_TIM15_CH1_OUTPUT_MODE        TIMER_OUTMODE_TOGGLE
@@ -149,7 +149,7 @@
  *      
  * Not implemented
  */
-/**@{*/   
+/**@{*/     
     #define APP_ENABLE_LPTIMER          0
 
     #define APP_ENABLE_LPTIM1           0   // LP 16b 2CC DMA
@@ -169,12 +169,12 @@
     #define APP_ADC2_MODE               ADC_MODE_DISABLED
 
     #define APP_ADC_CONFIGURE_CHANNELS  EBS_TRUE
-    #define APP_ADC_DM_MODE             ADC_DM_INTERRUPT
+    #define APP_ADC_DM_MODE             ADC_DM_DMA
     #define APP_ADC_DMA_BUFFER_LENGTH   256
     #define APP_ADC_DMA_CHANNEL         uC_DMA1_CH13_INTFNUM
     
     #define uC_ADC_CLOCK_PRESCALER      ADC_CCR_PRESC_2
-    #define uC_ADC_TIMING_MONITOR_GPIO  GPIO_DBG_SCOPE1
+    // #define uC_ADC_TIMING_MONITOR_GPIO  GPIO_DBG_SCOPE1
     #define uC_ADC1_TRIGSRC             0x4E  // tim15_trgo // adc_ext_trg14 // both edges
     
     // 0: disable, 1: ADC1, 2: ADC2
@@ -182,23 +182,26 @@
     #define APP_ENABLE_AIN1             0   // Fast
     #define APP_ENABLE_AIN2             1   // Fast // Nucleo
     #define APP_ENABLE_AIN3             0   // Fast
-    #define APP_ENABLE_AIN4             1   // Fast // Nucleo
-    #define APP_ENABLE_AIN5             1   // Fast // Nucleo
-    #define APP_ENABLE_AIN6             1   // Slow // Nucleo
+    #define APP_ENABLE_AIN4             0   // 1   // Fast // Nucleo
+    #define APP_ENABLE_AIN5             0   // 1   // Fast // Nucleo
+    #define APP_ENABLE_AIN6             0   // 1   // Slow // Nucleo
     #define APP_ENABLE_AIN7             0   // Slow
-    #define APP_ENABLE_AIN8             1   // Slow // Nucleo
+    #define APP_ENABLE_AIN8             0   // 1   // Slow // Nucleo
     #define APP_ENABLE_AIN9             0   // Slow
-    #define APP_ENABLE_AIN10            1   // Slow // Nucleo
+    #define APP_ENABLE_AIN10            0   // 1 // Slow // Nucleo
     #define APP_ENABLE_AIN11            0   // Slow
-    #define APP_ENABLE_AIN12            1   // Slow // Nucleo
-    #define APP_ENABLE_AIN13            1   // Slow // Nucleo
+    #define APP_ENABLE_AIN12            0   // 1   // Slow // Nucleo
+    #define APP_ENABLE_AIN13            0   // 1   // Slow // Nucleo
     #define APP_ENABLE_AIN14            0   // Slow
-    #define APP_ENABLE_AIN15            1   // Slow // Nucleo
+    #define APP_ENABLE_AIN15            0   // 1   // Slow // Nucleo
     #define APP_ENABLE_AIN18            0   // Slow
-    #define APP_ENABLE_AIN_TEMP         1   // Slow // ADC1 Only
+    #define APP_ENABLE_AIN_TEMP         0   // 1   // Slow // ADC1 Only
     #define APP_ENABLE_AIN_IREF         0   // Slow // ADC1 Only
     #define APP_ENABLE_AIN_VBAT         0   // Slow // ADC2 Only
     #define APP_ENABLE_AIN_VDDC         0   // Slow // ADC2 Only
+
+    #define uC_ADC1_CHANNEL_COUNT       1
+    #define uC_ADC2_CHANNEL_COUNT       0
 /**@}*/ 
 
 /**
@@ -321,7 +324,7 @@
 /**@{*/   
     #define APP_ENABLE_DMA              1
     
-    #define APP_ENABLE_DMA1_CH0         1
+    #define APP_ENABLE_DMA1_CH0         0
     #define APP_ENABLE_DMA1_CH1         0  
     #define APP_ENABLE_DMA1_CH2         0
     #define APP_ENABLE_DMA1_CH3         0
@@ -334,11 +337,11 @@
     #define APP_ENABLE_DMA1_CH10        0
     #define APP_ENABLE_DMA1_CH11        0  
     #define APP_ENABLE_DMA1_CH12        1
-    #define APP_ENABLE_DMA1_CH13        APP_ADC_USE_DMA
+    #define APP_ENABLE_DMA1_CH13        1   // DMA for ADC1
     #define APP_ENABLE_DMA1_CH14        0
     #define APP_ENABLE_DMA1_CH15        0
     
-    #define APP_ENABLE_DMA2_CH0         1
+    #define APP_ENABLE_DMA2_CH0         0
     #define APP_ENABLE_DMA2_CH1         0  
     #define APP_ENABLE_DMA2_CH2         0
     #define APP_ENABLE_DMA2_CH3         0

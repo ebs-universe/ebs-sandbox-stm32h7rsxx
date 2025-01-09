@@ -22,6 +22,9 @@ static void dd_reset_buffers(void){
     dd_prefill_buffer(&dd_buffer_1[0], 1024);
 }
 
+#pragma GCC push_options 
+#pragma GCC optimize("O0")
+
 void dd_tch(uint8_t token){
     (void)token;
 }
@@ -41,6 +44,9 @@ void dd_tch_3(uint8_t token){
 void dd_tch_4(uint8_t token){
     dd_tch(token);
 }
+
+#pragma GCC pop_options
+
 
 // DMA1: HPDMA, DMA2: GPDMA
 

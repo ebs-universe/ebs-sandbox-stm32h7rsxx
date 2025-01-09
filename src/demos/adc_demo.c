@@ -2,6 +2,7 @@
 #include <string.h>
 #include "adc_demo.h"
 #include <platform/sections.h>
+#include <hal/uc/gpio.h>
 
 
 #if uC_ADC1_DM_MODE == ADC_DM_INTERRUPT
@@ -15,7 +16,16 @@ void adc_result_handler(HAL_BASE_t channel, void * result) {
 }
 #endif
 
-/*
+#if uC_ADC1_DM_MODE == ADC_DM_DMA
+
+FASTEXEC
+void adc_buffer_hander(uint8_t bufnum) {
+    gpio_set_output_toggle(GPIO_DBG_SCOPE1);    
+}
+
+#endif
+
+/*  
  * This function triggers ADC read of all enabled channels. 
  *  
  * adc_result_handler is expected to be some application provided function,
@@ -24,7 +34,7 @@ void adc_result_handler(HAL_BASE_t channel, void * result) {
  * 
  * A more complex default handler, which also makes the ADC data available
  * on UCDM, should be implemented. However, note that the ADC interrupt is
- * already marginal and requires -O1 to avoid overrun at the presently 
+* already marginal and requires -O1 to avoid overrun at              the presently 
  * configured conversion speed.
  */
 void setup_adc_demo(void){
@@ -33,7 +43,13 @@ void setup_adc_demo(void){
     adc_value_count = 0;
     adc_install_eoc_handler(uC_ADC1_INTFNUM, &adc_result_handler);
     #endif
+
+    #if uC_ADC1_DM_MODE == ADC_DM_DMA
+    adc_install_eob_handler(uC_ADC1_INTFNUM, &adc_buffer_hander);
+    #endif
+
     adc_arm_trigger(uC_ADC1_INTFNUM);       
+    
     // adc_trigger_scan(uC_ADC1_INTFNUM);
     // adc_trigger_autoscan(uC_ADC1_INTFNUM);
 }
