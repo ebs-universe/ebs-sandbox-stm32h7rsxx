@@ -211,20 +211,9 @@
     #define APP_ENABLE_UART1            0  // A
     #define APP_ENABLE_UART2            0  // B
     #define APP_ENABLE_UART3            1  // Backchannel
-    #define APP_ENABLE_UART4            0
-    #define APP_ENABLE_UART5            0
-    #define APP_ENABLE_UART7            0
-    #define APP_ENABLE_UART8            0
     #define APP_ENABLE_UART6            0  // lp
 
-    #define APP_ENABLE_UART             (APP_ENABLE_UART1 + APP_ENABLE_UART2 + APP_ENABLE_UART3 + APP_ENABLE_UART4 + APP_ENABLE_UART5 + APP_ENABLE_UART7 + APP_ENABLE_UART8 + APP_ENABLE_UART6)
-    
-    #define APP_ENABLE_UART3_PT         0
-    #define uC_UART3_PT_INFNUM          0
-    #define uC_UART3_INTFNUM            0
-    #define uC_UART3_BAUD               1000000
-    #define uC_UART3_TXBUF_LEN          255
-    #define uC_UART3_RXBUF_LEN          255
+    #define uC_UART3_BAUD               1000000 
 /**@}*/ 
 
 /**
@@ -310,6 +299,15 @@
 /**@}*/ 
 
 /**
+ * @name Application Bulk Interface Configuration
+ */
+/**@{*/   
+    #define APP_ENABLE_BULKIF           0
+    #define APP_BULKIF_TYPE             EBS_INTF_UART
+    #define APP_BULKIF_INTFNUM          0
+/**@}*/ 
+
+/**
  * @name Application Backchannel Interface Configuration
  */
 /**@{*/   
@@ -318,7 +316,7 @@
     #define APP_BCIF_INTFNUM            0
 /**@}*/ 
 
-/**
+/** 
  * @name Application DMA Configuration
  */
 /**@{*/   
@@ -353,7 +351,7 @@
     #define APP_ENABLE_DMA2_CH9         0
     #define APP_ENABLE_DMA2_CH10        0
     #define APP_ENABLE_DMA2_CH11        0  
-    #define APP_ENABLE_DMA2_CH12        1
+    #define APP_ENABLE_DMA2_CH12        1       
     #define APP_ENABLE_DMA2_CH13        0
     #define APP_ENABLE_DMA2_CH14        0
     #define APP_ENABLE_DMA2_CH15        0
@@ -375,15 +373,30 @@
     #define ERROR_POLARITY              1
 
     // button appears to be broken. unclear if it is a 
-    // hardware or software issue.
+    // hardware or software issue.  
     #define APP_ENABLE_BUTTON           0
+/**@}*/
+
+/**
+ * @name Application Debug Configuration
+ */
+/**@{*/   
+    #define APP_ENABLE_DEBUG                 1
+
+    #if APP_ENABLE_BCIF
+        #define DEBUG_TRANSPORT_INTFNUM      APP_BCIF_INTFNUM
+        #define DEBUG_TRANSPORT_TYPE         APP_BCIF_TYPE
+    #elif APP_ENABLE_PRIF
+        #define DEBUG_TRANSPORT_INTFNUM      APP_PRIF_INTFNUM
+        #define DEBUG_TRANSPORT_TYPE         APP_PRIF_TYPE      
+    #endif
 /**@}*/
 
 /**
  * @name Application Modbus Configuration
  */
 /**@{*/   
-    #define APP_ENABLE_MODBUS           1
+    #define APP_ENABLE_MODBUS           0
     
     #if APP_ENABLE_PRIF
         #define MODBUS_TRANSPORT_INTFNUM     APP_PRIF_INTFNUM

@@ -3,4 +3,4 @@
 #include <time/cron.h>
 #include <iomap.h>
 
-void start_uart_bare_task(void);
+void start_uart_demo(void);

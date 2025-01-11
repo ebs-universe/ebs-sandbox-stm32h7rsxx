@@ -1,3 +1,3 @@
 
 
-void itcm_test(void);
+void itcm_demo(void);
