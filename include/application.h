@@ -116,32 +116,13 @@
  */
 /**@{*/   
     #define APP_ENABLE_TIMER            1
-
-    #define APP_ENABLE_TIM1             0   // ADV 16b 4CC DMA UpDown
     
-    #define APP_ENABLE_TIM2             0   // GP 32b 4CC DMA UpDown
-    #define APP_ENABLE_TIM3             0   // GP 32b 4CC DMA UpDown
-    #define APP_ENABLE_TIM4             0   // GP 32b 4CC DMA UpDown
-    #define APP_ENABLE_TIM5             0   // GP 32b 4CC DMA UpDown
-    
-    #define APP_ENABLE_TIM6             0   // Basic 16b 0CC DMA
-    #define APP_ENABLE_TIM7             0   // Basic 16b 0CC DMA
-    
-    #define APP_ENABLE_TIM9             0   // GP 16b 2CC
-    #define APP_ENABLE_TIM12            0   // GP 16b 2CC
-    #define APP_ENABLE_TIM13            0   // GP 16b 1CC
-    #define APP_ENABLE_TIM14            0   // GP 16b 1CC
+    // GP 16b 2CC DMA
+    #define APP_ENABLE_TIM15            1   
 
-    #define APP_ENABLE_TIM15            1   // GP 16b 2CC DMA
-    #define APP_ENABLE_TIM16            0   // GP 16b 1CC DMA
-    #define APP_ENABLE_TIM17            0   // GP 16b 1CC DMA
-
-    #define uC_TIM15_INTFNUM            0
     #define uC_TIM15_CYCLE_FREQ         1500000
-    #define uC_TIM15_INTERRUPTS_ENABLE      0
-    #define uC_TIM15_INTERRUPT_TOP_ENABLE   0
-    #define uC_TIM15_CH1_OUTPUT_MODE        TIMER_OUTMODE_TOGGLE
-    #define uC_TIM15_TRIGGEN_SRC            TIMER_TRIGGEN_TOP
+    #define uC_TIM15_CH1_OUTPUT_MODE    TIMER_OUTMODE_TOGGLE
+    #define uC_TIM15_TRIGGEN_SRC        TIMER_TRIGGEN_TOP
 /**@}*/ 
 
 /**
@@ -150,13 +131,6 @@
  * Not implemented
  */
 /**@{*/     
-    #define APP_ENABLE_LPTIMER          0
-
-    #define APP_ENABLE_LPTIM1           0   // LP 16b 2CC DMA
-    #define APP_ENABLE_LPTIM2           0   // LP 16b 2CC DMA
-    #define APP_ENABLE_LPTIM3           0   // LP 16b 2CC DMA
-    #define APP_ENABLE_LPTIM4           0   // LP 16b 0CC 
-    #define APP_ENABLE_LPTIM5           0   // LP 16b 0CC 
 /**@}*/ 
 
 
@@ -207,7 +181,9 @@
 /**
  * @name Application UART Configuration
  */
-/**@{*/   
+/**@{*/
+    #define APP_ENABLE_UART             1
+
     #define APP_ENABLE_UART1            0  // A
     #define APP_ENABLE_UART2            0  // B
     #define APP_ENABLE_UART3            1  // Backchannel
@@ -321,41 +297,12 @@
  */
 /**@{*/   
     #define APP_ENABLE_DMA              1
-    
-    #define APP_ENABLE_DMA1_CH0         0
-    #define APP_ENABLE_DMA1_CH1         0  
-    #define APP_ENABLE_DMA1_CH2         0
-    #define APP_ENABLE_DMA1_CH3         0
-    #define APP_ENABLE_DMA1_CH4         0
-    #define APP_ENABLE_DMA1_CH5         0
-    #define APP_ENABLE_DMA1_CH6         0  
-    #define APP_ENABLE_DMA1_CH7         0
-    #define APP_ENABLE_DMA1_CH8         0
-    #define APP_ENABLE_DMA1_CH9         0
-    #define APP_ENABLE_DMA1_CH10        0
-    #define APP_ENABLE_DMA1_CH11        0  
-    #define APP_ENABLE_DMA1_CH12        1
-    #define APP_ENABLE_DMA1_CH13        1   // DMA for ADC1
-    #define APP_ENABLE_DMA1_CH14        0
-    #define APP_ENABLE_DMA1_CH15        0
-    
-    #define APP_ENABLE_DMA2_CH0         0
-    #define APP_ENABLE_DMA2_CH1         0  
-    #define APP_ENABLE_DMA2_CH2         0
-    #define APP_ENABLE_DMA2_CH3         0
-    #define APP_ENABLE_DMA2_CH4         0
-    #define APP_ENABLE_DMA2_CH5         0
-    #define APP_ENABLE_DMA2_CH6         0  
-    #define APP_ENABLE_DMA2_CH7         0
-    #define APP_ENABLE_DMA2_CH8         0
-    #define APP_ENABLE_DMA2_CH9         0
-    #define APP_ENABLE_DMA2_CH10        0
-    #define APP_ENABLE_DMA2_CH11        0  
-    #define APP_ENABLE_DMA2_CH12        1       
-    #define APP_ENABLE_DMA2_CH13        0
-    #define APP_ENABLE_DMA2_CH14        0
-    #define APP_ENABLE_DMA2_CH15        0
 
+    #define APP_ENABLE_DMA1_CH12        1   // HPDMA for memcpy
+    #define APP_ENABLE_DMA1_CH13        1   // HPDMA for ADC1
+    
+    #define APP_ENABLE_DMA2_CH12        1   // GPDMA for memcpy
+    
     #define uC_DMA1_CH13_TYPE           DMA_CHN_TYPE_CIRCULAR
     #define uC_DMA1_CH13_PRIORITY       DMA_PRIORITY_IMMEDIATE
 /**@}*/ 

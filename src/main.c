@@ -16,12 +16,12 @@
 #include <modbus/modbus.h>
 
 #include <blink.h>
-#include <tasks/usb_task.h>
 
 #include <demos/itcm_demo.h>
 #include <demos/adc_demo.h>
 #include <demos/dma_demo.h>
 #include <demos/uart_demo.h>
+#include <demos/usbcdc_demo.h>
 
 ucdm_addr_t next_address;
 
@@ -131,8 +131,13 @@ int main(void) {
   ucdm_address = setup_application(ucdm_address);
 
   // itcm_demo();
-  start_uart_demo();
+  // start_uart_demo();
   // setup_dma_demo();
+  debug_printf("Hello, World\n");
+  // _debug_printf("%d %x\n", 12, 12);
+  debug_printf("%d %x %d %f\n", 12, 12, 12, 1.3);
+  debug_putchar('x');
+
   setup_adc_demo();
   timer_set_mode(uC_TIM15_INTFNUM, TIMER_MODE_PERIODIC);
 
@@ -153,7 +158,7 @@ int main(void) {
     #if APP_ENABLE_DMA
       dma_poll(); 
     #endif
-    // usbcdc_bare_task();
+    // usbcdc_demo_task();
   }
 }
 

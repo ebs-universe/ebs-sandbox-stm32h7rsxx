@@ -2,7 +2,7 @@
 
 #include <application.h>
 #include <tusb.h>
-#include "usb_task.h"
+#include "usbcdc_demo.h"
 #include <hal/uc/usb.h>
 #include <hal/uc/usbcdc.h>
 
@@ -34,7 +34,7 @@ static void cdc_write_task(void) {
     }
 }
 
-void usbcdc_bare_task(void){
+void usbcdc_demo_task(void){
     #if APP_ENABLE_USB_DEVICE
       cdc_read_task();
       cdc_write_task();
